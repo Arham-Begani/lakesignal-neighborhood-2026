@@ -21,7 +21,7 @@ An [IISc assessment of Bengaluru lakes](https://wgbis.ces.iisc.ac.in/biodiversit
 
 ## Built with and disclosure
 
-HTML, CSS, and vanilla JavaScript, with `localStorage` for draft persistence. AI coding assistance was used to implement and review the prototype. No prior LakeAlive/Kere source code or design was copied into this project. The idea is informed by earlier work on lake-awareness projects, but all code, design, and text here were created for Neighborhood Hacks.
+HTML, CSS, and vanilla JavaScript, with `localStorage` for draft persistence. An AI assistant generated the initial code and design, created the synthetic demo narration, and helped test the prototype in a browser. No prior LakeAlive/Kere source code or design was copied into this project. The subject is informed by earlier lake-awareness work, but all code, design, and text here were created for Neighborhood Hacks.
 
 ## Limits and next steps
 
