@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f8f6" />
+    <meta name="description" content="LakeSignal helps residents turn a lake observation into a clear, evidence-aware maintenance report." />
+    <title>LakeSignal — A clearer way to report lake concerns</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand"><span class="brand-mark" aria-hidden="true">◉</span><span>LakeSignal</span><span class="brand-sub">/ community report builder</span></div>
+        <a class="top-link" href="https://lms.bbmpgov.in/lake" target="_blank" rel="noreferrer">BBMP Lake Monitoring ↗</a>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <div>
+            <p class="eyebrow">For residents of Bengaluru</p>
+            <h1 id="page-title">Turn an observation into a useful lake report.</h1>
+            <p class="lead">Record what you actually saw, see what evidence is missing, and prepare a clear note for the local maintenance channel. Your draft stays in this browser.</p>
+          </div>
+          <div class="intro-note"><span class="note-kicker">A careful starting point</span><strong>Observation ≠ diagnosis</strong><p>Foam, discoloration, litter, and dead fish need investigation. This tool never claims a cause from appearance alone.</p></div>
+        </section>
+
+        <div class="workspace">
+          <section class="panel form-panel" aria-labelledby="form-title">
+            <div class="panel-head"><div><p class="eyebrow">01 / record</p><h2 id="form-title">What did you notice?</h2></div><button type="button" class="text-button" id="load-example">Load example</button></div>
+            <p class="helper">Only enter something you observed yourself. The example is fictional and clearly marked.</p>
+            <form id="observation-form" novalidate>
+              <div class="form-row"><div class="field"><label for="lake">Lake or waterbody <span>*</span></label><input id="lake" name="lake" maxlength="100" autocomplete="off" placeholder="e.g. Ulsoor Lake" required /><p class="field-error" id="lake-error"></p></div><div class="field"><label for="date">Date observed <span>*</span></label><input id="date" name="date" type="date" required /><p class="field-error" id="date-error"></p></div></div>
+              <fieldset class="field"><legend>What was visible? <span>*</span></legend><p class="field-hint">Choose all that apply. Avoid guessing the source.</p><div class="chips" id="concerns"><label><input type="checkbox" value="Floating litter" /><span>Floating litter</span></label><label><input type="checkbox" value="Foam or unusual surface film" /><span>Foam / surface film</span></label><label><input type="checkbox" value="Unusual color or odor" /><span>Color / odor</span></label><label><input type="checkbox" value="Suspected inflow" /><span>Possible inflow</span></label><label><input type="checkbox" value="Wildlife distress" /><span>Wildlife distress</span></label><label><input type="checkbox" value="Blocked access or dumping" /><span>Dumping / blocked access</span></label></div><p class="field-error" id="concerns-error"></p></fieldset>
+              <div class="field"><label for="location">Where around the lake? <span>*</span></label><input id="location" name="location" maxlength="140" autocomplete="off" placeholder="e.g. east entrance, near the walking path" required /><p class="field-error" id="location-error"></p></div>
+              <div class="field"><label for="details">What exactly did you see? <span>*</span></label><textarea id="details" name="details" rows="5" maxlength="900" placeholder="Describe visible details without assigning a cause. Include approximate extent and any repeat observations." required></textarea><div class="field-meta"><p class="field-error" id="details-error"></p><span id="details-count">0 / 900</span></div></div>
+              <div class="form-row"><div class="field"><label for="photo">Evidence link <em>optional</em></label><input id="photo" name="photo" type="url" maxlength="500" placeholder="https://…" /><p class="field-hint">A link to a photo or short video you control. Do not include people without consent.</p><p class="field-error" id="photo-error"></p></div><div class="field"><label for="frequency">Have you seen it before?</label><select id="frequency" name="frequency"><option value="Not sure">Not sure</option><option value="First time">First time</option><option value="On multiple days">On multiple days</option></select><p class="field-hint">This is your observation, not a water-quality measurement.</p></div></div>
+              <div class="form-actions"><button type="submit" class="button button-primary" id="build-button">Prepare report</button><button type="button" class="button button-secondary" id="clear-button">Clear draft</button></div>
+            </form>
+          </section>
+
+          <aside class="right-column">
+            <section class="panel review-panel" aria-labelledby="review-title"><div class="panel-head"><div><p class="eyebrow">02 / review</p><h2 id="review-title">Report readiness</h2></div><span class="readiness" id="readiness-badge">Start here</span></div><p class="helper">A stronger report gives a maintainer a place, time, observable issue, and supporting evidence.</p><ul class="checklist" id="checklist" aria-live="polite"></ul><div class="evidence-note" id="evidence-note">Add a dated image link if it is safe to do so. The report is still useful without one.</div></section>
+            <section class="panel route-panel" aria-labelledby="route-title"><p class="eyebrow">03 / route</p><h2 id="route-title">Send through an official channel</h2><p>BBMP’s Lake Monitoring System points residents to Sahaaya 2.0 for lake maintenance complaints. Copy the report below, then use the official portal to submit it.</p><a class="button button-outline" href="https://lms.bbmpgov.in/lake" target="_blank" rel="noreferrer">Open lake monitoring system ↗</a><p class="tiny">LakeSignal is an independent prototype. It does not file a complaint for you or contact BBMP.</p></section>
+          </aside>
+        </div>
+
+        <section class="panel output-panel" id="output-panel" hidden aria-labelledby="output-title"><div class="panel-head"><div><p class="eyebrow">Ready to use</p><h2 id="output-title">Your report draft</h2></div><span class="saved-indicator" id="saved-indicator">Saved locally</span></div><div class="output-note" id="output-note"></div><pre id="report-output" tabindex="0"></pre><div class="form-actions"><button class="button button-primary" type="button" id="copy-button">Copy report</button><button class="button button-secondary" type="button" id="download-button">Download .txt</button></div><p class="tiny">Review every line before submitting it. Never report an illustrative example as a real observation.</p></section>
+
+        <section class="context" aria-labelledby="context-title"><div><p class="eyebrow">Why this exists</p><h2 id="context-title">The issue is documented. A useful report still starts with a real observation.</h2></div><div class="context-copy"><p>An Indian Institute of Science assessment documented serious pollution pressures across Bengaluru’s lakes. That finding motivates this tool; it does not verify any new incident or the condition of a particular lake today.</p><div class="source-links"><a href="https://wgbis.ces.iisc.ac.in/biodiversity/pubs/ETR/ETR101/results.html" target="_blank" rel="noreferrer">Read the IISc assessment ↗</a><a href="https://lms.bbmpgov.in/lake" target="_blank" rel="noreferrer">View BBMP’s current lake channel ↗</a></div></div></section>
+      </main>
+      <footer><span>LakeSignal · Built during Neighborhood Hacks 2026</span><span>Local-first prototype · No account, no server, no automatic submission</span></footer>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
