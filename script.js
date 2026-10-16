@@ -66,6 +66,8 @@ function hydrate(s) {
   for (const key of Object.keys(fields)) fields[key].value = s[key] ?? (key === 'frequency' ? 'Not sure' : '');
   concernInputs.forEach(input => { input.checked = Array.isArray(s.concerns) && s.concerns.includes(input.value); });
   illustrative = Boolean(s.illustrative);
+  for (const id of ['lake', 'date', 'location', 'details', 'photo']) setError(id, '');
+  document.querySelector('#concerns-error').textContent = '';
   renderReadiness();
 }
 
